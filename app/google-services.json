@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "973675349213",
+    "project_id": "mood-mate-canary",
+    "storage_bucket": "mood-mate-canary.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973675349213:android:67638cd3a816140d764734",
+        "android_client_info": {
+          "package_name": "com.jprojects.moodmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDoOzBhV8yNWJ0UPEucnk_Dt6BwbPW6-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
