@@ -42,8 +42,8 @@ fun MyApp(modifier: Modifier = Modifier) {
 
     val checkAuth = authViewModel.isUserSignedIn
 
-    val startScreen = if (checkAuth) {
-        AppGraphs.Auth
+    val startScreen : AppGraphs = if (checkAuth) {
+        AppGraphs.Home
     } else {
         AppGraphs.Auth
     }

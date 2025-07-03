@@ -74,14 +74,18 @@ fun AddMoodScreen(
                     )
                 },
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                    .fillMaxWidth(0.98f),
                 enabled = !viewModel.isSubmitting
             ) {
                 if (viewModel.isSubmitting) {
                     CircularProgressIndicator(Modifier.size(20.dp))
                 } else {
-                    Text("Submit")
+                    Text(
+                        "Submit", fontSize = 19.sp,
+                        lineHeight = 24.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    )
                 }
             }
         }

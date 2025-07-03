@@ -65,7 +65,7 @@ fun GetStartedScreen(
 
                     onSignUpClick()
 
-                }, Modifier.fillMaxWidth(0.9f)) {
+                }, Modifier.fillMaxWidth(0.98f)) {
                     Text(
                         "Get Onboard!",
                         fontSize = 19.sp,

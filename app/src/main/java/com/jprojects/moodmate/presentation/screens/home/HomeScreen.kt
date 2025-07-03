@@ -9,11 +9,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
@@ -44,9 +45,9 @@ import com.jprojects.moodmate.presentation.screens.onboarding.auth.AuthViewModel
 fun HomeScreen(
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = hiltViewModel(),
-    authViewModel: AuthViewModel= hiltViewModel(),
+    authViewModel: AuthViewModel = hiltViewModel(),
     onAddMoodClick: () -> Unit,
-    onSignOut:() -> Unit
+    onSignOut: () -> Unit
 ) {
     val user by homeViewModel.userDetails.collectAsState()
     val moods by homeViewModel.moods.collectAsState()
@@ -54,10 +55,11 @@ fun HomeScreen(
     val authState by authViewModel.authState.collectAsStateWithLifecycle()
 
     LaunchedEffect(true) {
-        when(authState){
+        when (authState) {
             AuthState.UnAuthenticated -> {
                 onSignOut()
             }
+
             else -> {
 
             }
@@ -86,19 +88,24 @@ fun HomeScreen(
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = "Welcome,",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = Color.Gray
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.DarkGray
                     )
                     Text(
                         text = user?.displayName ?: "User",
                         style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold
                     )
                 }
 
                 Box {
                     IconButton(onClick = { showMenu = !showMenu }) {
-                        Icon(Icons.Default.AccountCircle, contentDescription = "Account")
+                        Icon(
+                            Icons.Rounded.AccountCircle,
+                            contentDescription = "Account",
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = modifier.size(32.dp)
+                        )
                     }
 
                     DropdownMenu(
@@ -119,13 +126,18 @@ fun HomeScreen(
             Spacer(Modifier.height(24.dp))
 
             if (moods.isEmpty()) {
-                Text(
-                    text = "No moods tracked yet. Tap the '+' button to begin.",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Gray,
-                    modifier = Modifier.padding(top = 32.dp)
-                )
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text(
+                        text = "No moods tracked yet. Tap the '+' button to begin.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.Gray,
+                        modifier = Modifier.padding(top = 32.dp)
+                    )
+                }
+
             } else {
+                Text("Here's all your moods", style = MaterialTheme.typography.titleMedium)
+                Spacer(Modifier.height(16.dp))
                 LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     items(moods) { mood ->
                         MoodListItem(mood)

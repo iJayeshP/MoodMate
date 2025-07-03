@@ -50,9 +50,9 @@ class MoodRepositoryImpl(
             return@callbackFlow
         }
 
-        val moodRef = firestore.collection("moods")
+        val moodRef = firestore.collection(Constants.MOOD_COLLECTION)
             .document(userUid)
-            .collection("entries")
+            .collection(Constants.MOOD_ENTRY)
             .orderBy("timestamp", Query.Direction.DESCENDING)
 
         val listener = moodRef.addSnapshotListener { snapshot, error ->
